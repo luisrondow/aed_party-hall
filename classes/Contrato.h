@@ -1,3 +1,4 @@
+#include <iostream>
 #ifndef CONTRATO_H_INCLUDED
 #define CONTRATO_H_INCLUDED
 
@@ -8,8 +9,8 @@ private:
     float valor_total;
     float desconto;
     float valor_final;
-    char forma_pagamento[250];
-    char status[250];
+    int forma_pagamento;
+    int status;
     int codigo_festa;
 public:
     Contrato();
