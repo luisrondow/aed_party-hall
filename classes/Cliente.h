@@ -20,7 +20,7 @@ public:
 int getId()
 {
     std::string x;
-    ifstream in;
+    std::ifstream in;
     in.open("DAO/IdCliente.txt");
     in >> x;
 
