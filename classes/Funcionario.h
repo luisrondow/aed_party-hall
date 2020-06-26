@@ -18,7 +18,7 @@ public:
     void Store();
 };
 
-int getId()
+int getIdFuncionario()
 {
     std::string x;
     std::ifstream in;
@@ -35,7 +35,7 @@ int getId()
 
 Funcionario::Funcionario(std::string nome, std::string telefone, std::string funcao, std::string salario, int tipo)
 {
-    this->codigo = getId() + 1;
+    this->codigo = getIdFuncionario() + 1;
     this->nome = nome;
     this->telefone = telefone;
     this->funcao = funcao;

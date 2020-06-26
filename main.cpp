@@ -28,6 +28,32 @@ void cadastraCliente()
     cliente->Store();
 }
 
+void cadastraFuncionario()
+{
+    string nome, telefone, funcao, salario;
+    int tipo;
+
+    cout << "Digite..." << endl;
+
+    cout << "O nome do funcionario: ";
+    getline(cin, nome);
+
+    cout << "O telefone do funcionario: ";
+    getline(cin, telefone);
+
+    cout << "A funcao do funcionario: ";
+    getline(cin, funcao);
+
+    cout << "O salario do funcionario: ";
+    getline(cin, salario);
+
+    cout << "O tipo do funcionario (0 = Fixo, 1 = Temporario): ";
+    cin >> tipo;
+
+    Funcionario *funcionario = new Funcionario(nome, telefone, funcao, salario, tipo);
+    funcionario->Store();
+}
+
 int main()
 {
 
@@ -52,7 +78,7 @@ int main()
             cadastraCliente();
             break;
         case 2:
-            cout << "Cadastrando funcionários..." << endl;
+            cadastraFuncionario();
             break;
         case 3:
             cout << "Cadastrando fornecedor..." << endl;

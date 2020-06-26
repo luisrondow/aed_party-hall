@@ -17,7 +17,7 @@ public:
     void Store();
 };
 
-int getId()
+int getIdCliente()
 {
     std::string x;
     std::ifstream in;
@@ -34,7 +34,7 @@ int getId()
 
 Cliente::Cliente(std::string nome, std::string endereco, std::string telefone, std::string data_nascimento)
 {
-    this->codigo = getId() + 1;
+    this->codigo = getIdCliente() + 1;
     this->nome = nome;
     this->endereco = endereco;
     this->telefone = telefone;
