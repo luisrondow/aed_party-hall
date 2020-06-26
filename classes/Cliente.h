@@ -62,7 +62,7 @@ void Cliente::Store()
 
     if (file == NULL || fileId == NULL)
     {
-        printf("Problemas na CRIACAO do arquivo\n");
+        std::cout << "Problemas na CRIACAO do arquivo" << std::endl;
         return;
     }
 

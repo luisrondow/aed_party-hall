@@ -1,6 +1,9 @@
 #include <iostream>
 #include <sstream>
 #include "classes/Cliente.h"
+#include "classes/Fornecedor.h"
+#include "classes/Funcionario.h"
+#include "classes/Festa.h"
 
 using namespace std;
 
