@@ -10,20 +10,21 @@ private:
     float valor_final;
     int forma_pagamento;
     float desconto;
-    int status;
+    int status_pagamento;
     int codigo_festa;
 public:
     Contrato();
+    void atualizaStatusPagamento();
 };
 
-Contrato::Contrato(int numero, float valor_total, int forma_pagamento, int status, int codigo_festa)
+Contrato::Contrato(int numero, float valor_total, int forma_pagamento, int status_pagamento, int codigo_festa)
 {
     this->numero = numero;
     this->valor_total = valor_total;
     this->valor_final = getValorFinal(valor_total, forma_pagamento);
     this->forma_pagamento = forma_pagamento;
     this->desconto = this->valor_total - this->valor_final;
-    this->status = status;
+    this->status_pagamento = status_pagamento;
     this->codigo_festa = codigo_festa;
 }
 
@@ -37,6 +38,10 @@ int getValorFinal(float valor_total, int forma_pagamento){
     } else{
         return valor_total;
     }
+}
+
+void Contrato::atualizaStatusPagamento(int statusPagamento){
+    this->status_pagamento = status_pagamento;
 }
 
 #endif
