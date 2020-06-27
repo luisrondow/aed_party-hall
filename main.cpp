@@ -56,6 +56,78 @@ void cadastraFuncionario()
     funcionario->Store();
 }
 
+void cadastraFesta()
+{
+    Pesquisa *pesquisa = new Pesquisa();
+    int codigo_cliente, quantidade_convidados, dia_semana, horario_inicio, horario_fim;
+    string nome_cliente, data, tema;
+
+    cout << "Digite..." << endl;
+
+    cout << "O nome do cliente: ";
+    getline(cin, nome_cliente);
+
+    codigo_cliente = pesquisa->CodigoCliente(nome_cliente);
+
+    do
+    {
+        cout << "A data da festa (DD/MM/YYYY): ";
+        getline(cin, data);
+    } while (pesquisa->ExisteDataFesta(data) == true);
+
+    cout << "A quantidade de convidados: ";
+    cin >> quantidade_convidados;
+
+    cout << "O dia da semana (Domingo = 1 ... Sabado = 7): ";
+    cin >> dia_semana;
+
+    if (dia_semana != 7)
+    {
+        cout << "O horario de inicio";
+        cin >> horario_inicio;
+
+        do
+        {
+            cout << "O horario que acabara (Duracao maxima = 4 horas)";
+            cin >> horario_fim;
+        } while (horario_fim > horario_inicio + 4);
+        cin.ignore(1, '\n');
+    }
+    else
+    {
+        int opcao_sabado;
+        cout << "Qual o Horario:" << endl;
+        cout << "1 - 12 as 16 horas" << endl;
+        cout << "2 - 18 as 22 horas" << endl;
+        cout << "Selecione o que deseja fazer: ";
+        cin >> opcao_sabado;
+        cin.ignore(1, '\n');
+        do
+        {
+            switch (opcao_sabado)
+            {
+            case 1:
+                horario_inicio = 12;
+                horario_fim = 16;
+                break;
+            case 2:
+                horario_inicio = 18;
+                horario_fim = 22;
+                break;
+            default:
+                cout << "Opcao inválida..." << endl;
+                break;
+            }
+        } while (opcao_sabado != 1 && opcao_sabado != 2);
+    }
+
+    cout << "O tema da festa: ";
+    getline(cin, tema);
+
+    Festa *festa = new Festa(quantidade_convidados, data, dia_semana, horario_inicio, horario_fim, tema, codigo_cliente);
+    festa->Store();
+}
+
 void pesquisar(int opcao)
 {
     Pesquisa *pesquisa = new Pesquisa();
@@ -135,7 +207,7 @@ int main()
             cout << "Cadastrando fornecedor..." << endl;
             break;
         case 4:
-            cout << "Cadastrando festa..." << endl;
+            cadastraFesta();
             break;
         case 5:
             cout << "Selecione para pesquisar pelo nome:" << endl;
