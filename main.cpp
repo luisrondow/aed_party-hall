@@ -68,6 +68,10 @@ void pesquisar(int opcao)
         pesquisa->Clientes(nome);
         break;
     case 2:
+        cout << "Digite o nome do funcionario: ";
+        getline(cin, nome);
+        cout << "Pesquisando funcionario com o nome " << nome << "..." << endl;
+        pesquisa->Funcionarios(nome);
         cout << "Pesquisando funcionarios..." << endl;
         break;
     case 3:
