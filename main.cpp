@@ -5,6 +5,7 @@
 #include "classes/Funcionario.h"
 #include "classes/Festa.h"
 #include "classes/Pesquisa.h"
+#include "classes/Relatorio.h"
 
 using namespace std;
 
@@ -72,10 +73,29 @@ void pesquisar(int opcao)
         getline(cin, nome);
         cout << "Pesquisando funcionario com o nome " << nome << "..." << endl;
         pesquisa->Funcionarios(nome);
-        cout << "Pesquisando funcionarios..." << endl;
         break;
     case 3:
-        cout << "Pesquisando fornecedores..." << endl;
+        cout << "Digite o nome do fornecedor: ";
+        getline(cin, nome);
+        cout << "Pesquisando fornecedor com o nome " << nome << "..." << endl;
+        pesquisa->Fornecedor(nome);
+        break;
+    default:
+        cout << "Opcao inválida..." << endl;
+        break;
+    }
+}
+
+void relatorio(int opcao)
+{
+    Relatorio *relatorio = new Relatorio();
+    switch (opcao)
+    {
+    case 1:
+        cout << "Gerando relatorio de festa por cliente..." << endl;
+        break;
+    case 2:
+        cout << "Gerando relatorio de festa por data..." << endl;
         break;
     default:
         cout << "Opcao inválida..." << endl;
@@ -86,7 +106,7 @@ void pesquisar(int opcao)
 int main()
 {
 
-    int opcao_principal, opcao_pesquisa;
+    int opcao_principal, opcao_pesquisa, opcao_relatorio;
 
     while (opcao_principal != 0)
     {
@@ -97,6 +117,7 @@ int main()
         cout << "3 - Cadastrar um Fornecedor" << endl;
         cout << "4 - Cadastrar uma Festa" << endl;
         cout << "5 - Pesquisar" << endl;
+        cout << "6 - Pesquisar" << endl;
         cout << "0 - SAIR" << endl;
         cout << "Selecione o que deseja fazer: ";
         cin >> opcao_principal;
@@ -125,6 +146,15 @@ int main()
             cin >> opcao_pesquisa;
             cin.ignore(1, '\n');
             pesquisar(opcao_pesquisa);
+        case 6:
+            cout << "Selecione para gerar o relatorio:" << endl;
+            cout << "1 - Festa por cliente" << endl;
+            cout << "2 - Festa por data" << endl;
+            cout << "Selecione o que deseja fazer: ";
+            cin >> opcao_relatorio;
+            cin.ignore(1, '\n');
+            relatorio(opcao_relatorio);
+            break;
         case 0:
             break;
         default:

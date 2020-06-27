@@ -7,9 +7,11 @@ class Pesquisa
 {
     const int LINHAS_CLIENTE = 5;
     const int LINHAS_FUNCIONARIO = 6;
+    const int LINHAS_FORNECEDOR = 4;
 public:
     void Clientes(std::string nome);
     void Funcionarios(std::string nome);
+    void Fornecedor(std::string nome);
 };
 
 void Pesquisa::Clientes(std::string nome)
@@ -129,5 +131,65 @@ void Pesquisa::Funcionarios(std::string nome)
         std::cout << "Nao ha nenhum funcionario com este nome" << std::endl;
     }
 }
+
+void Pesquisa::Fornecedor(std::string nome)
+{
+    int linha_fornecedor = -1;
+    int cont = 0;
+    std::ifstream file_fornecedor;
+    std::string line;
+
+    file_fornecedor.open("DAO/Fornecedor.txt");
+
+    if (file_fornecedor.is_open())
+    {
+        while (getline(file_fornecedor, line) && linha_fornecedor == -1)
+        {
+            if (nome.compare(line) == 0)
+            {
+                linha_fornecedor = cont--;
+            }
+            cont++;
+        }
+    }
+    else
+    {
+        std::cout << "Nao ha nenhum fornecedor cadastrado" << std::endl;
+    }
+
+    file_fornecedor.close();
+
+    if (linha_fornecedor != -1)
+    {
+        int file_cont = 0, fornecedor_line_counter = 0;
+        bool canPrint = false;
+
+        file_fornecedor.open("DAO/Fornecedor.txt");
+
+        if (file_fornecedor.is_open())
+        {
+            while (getline(file_fornecedor, line))
+            {
+                file_cont++;
+                if ((file_cont == linha_fornecedor || canPrint == true ) && fornecedor_line_counter <= LINHAS_FORNECEDOR)
+                {
+                    canPrint = true;
+                    fornecedor_line_counter++;
+                    std::cout << line << std::endl;
+                }
+            }
+            file_fornecedor.close();
+        }
+        else
+        {
+            std::cout << "Nao ha nenhum fornecedor cadastrado" << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Nao ha nenhum fornecedor com este nome" << std::endl;
+    }
+}
+
 
 #endif
