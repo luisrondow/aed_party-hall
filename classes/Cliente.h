@@ -54,12 +54,10 @@ void Cliente::Store()
     if ((file = fopen(file_name.c_str(), "r")) == NULL)
     {
         file = fopen(file_name.c_str(), "w");
-        fclose(file);
     }
     else
     {
         file = fopen(file_name.c_str(), "a");
-        fclose(file);
     }
 
     fileId = fopen("DAO/IdCliente.txt", "w");
@@ -70,8 +68,6 @@ void Cliente::Store()
         return;
     }
 
-    fclose(fileId);
-
     fprintf(fileId, "%d", this->codigo);
     fprintf(file, "%d\n", this->codigo);
     fprintf(file, "%s\n", this->nome.c_str());
@@ -80,6 +76,7 @@ void Cliente::Store()
     fprintf(file, "%s\n", this->data_nascimento.c_str());
     fprintf(file, "\n");
     fclose(file);
+    fclose(fileId);
 }
 
 #endif

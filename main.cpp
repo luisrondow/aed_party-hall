@@ -70,8 +70,8 @@ void cadastraFornecedor()
     cout << "O produto do fornecido: ";
     getline(cin, produto_fornecido);
 
-    // Fornecedor *fornecedor = new Fornecedor(nome, telefone, produto_fornecido);
-    // fornecedor->Store();
+    Fornecedor *fornecedor = new Fornecedor(nome, telefone, produto_fornecido);
+    fornecedor->Store();
 }
 
 void cadastraFesta()

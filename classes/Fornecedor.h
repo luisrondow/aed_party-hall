@@ -49,12 +49,10 @@ void Fornecedor::Store()
     if ((file = fopen(file_name.c_str(), "r")) == NULL)
     {
         file = fopen(file_name.c_str(), "w");
-        fclose(file);
     }
     else
     {
         file = fopen(file_name.c_str(), "a");
-        fclose(file);
     }
 
     fileId = fopen("DAO/IdFornecedor.txt", "w");
@@ -65,8 +63,6 @@ void Fornecedor::Store()
         return;
     }
 
-    fclose(fileId);
-
     fprintf(fileId, "%d", this->codigo);
     fprintf(file, "%d\n", this->codigo);
     fprintf(file, "%s\n", this->nome.c_str());
@@ -74,6 +70,7 @@ void Fornecedor::Store()
     fprintf(file, "%s\n", this->produto_fornecido.c_str());
     fprintf(file, "\n");
     fclose(file);
+    fclose(fileId);
 }
 
 #endif

@@ -59,15 +59,13 @@ void Festa::Store()
     if ((file = fopen(file_name.c_str(), "r")) == NULL)
     {
         file = fopen(file_name.c_str(), "w");
-        fclose(file);
     }
     else
     {
         file = fopen(file_name.c_str(), "a");
-        fclose(file);
     }
 
-    fileId = fopen("DAO/Festa.txt", "w");
+    fileId = fopen("DAO/IdFesta.txt", "w");
 
     if (file == NULL || fileId == NULL)
     {
@@ -75,7 +73,6 @@ void Festa::Store()
         return;
     }
 
-    fclose(fileId);
 
     fprintf(fileId, "%d", this->codigo);
     fprintf(file, "%d\n", this->codigo);
@@ -87,6 +84,7 @@ void Festa::Store()
     fprintf(file, "%s\n", this->tema.c_str());
     fprintf(file, "%d\n", this->codigo_cliente);
     fprintf(file, "\n");
+    fclose(fileId);
     fclose(file);
 }
 
