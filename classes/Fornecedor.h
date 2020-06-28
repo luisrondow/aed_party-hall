@@ -7,12 +7,73 @@ class Fornecedor : public Pessoa
 {
 private:
     std::string produto_fornecido;
+
 public:
-    Fornecedor();
+    Fornecedor(std::string nome, std::string telefone, std::string produto_fornecido);
+    void Store();
 };
 
-Fornecedor::Fornecedor()
+int getIdFornecedor()
 {
+    std::string x;
+    std::ifstream in;
+    in.open("DAO/IdFornecedor.txt");
+    in >> x;
+
+    if (x == "")
+    {
+        return 0;
+    }
+    else
+    {
+        return std::stoi(x);
+    }
+}
+
+Fornecedor::Fornecedor(std::string nome, std::string telefone, std::string produto_fornecido)
+{
+    this->codigo = getIdFornecedor() + 1;
+    this->nome = nome;
+    this->telefone = telefone;
+    this->produto_fornecido = produto_fornecido;
+}
+
+void Fornecedor::Store()
+{
+    int i;
+    int result;
+    FILE *file;
+    FILE *fileId;
+    std::string file_name = "DAO/Fornecedor.txt";
+
+    if ((file = fopen(file_name.c_str(), "r")) == NULL)
+    {
+        file = fopen(file_name.c_str(), "w");
+        fclose(file);
+    }
+    else
+    {
+        file = fopen(file_name.c_str(), "a");
+        fclose(file);
+    }
+
+    fileId = fopen("DAO/IdFornecedor.txt", "w");
+
+    if (file == NULL || fileId == NULL)
+    {
+        std::cout << "Problemas na CRIACAO do arquivo" << std::endl;
+        return;
+    }
+
+    fclose(fileId);
+
+    fprintf(fileId, "%d", this->codigo);
+    fprintf(file, "%d\n", this->codigo);
+    fprintf(file, "%s\n", this->nome.c_str());
+    fprintf(file, "%s\n", this->telefone.c_str());
+    fprintf(file, "%s\n", this->produto_fornecido.c_str());
+    fprintf(file, "\n");
+    fclose(file);
 }
 
 #endif
