@@ -55,6 +55,7 @@ void cadastraFuncionario()
     Funcionario *funcionario = new Funcionario(nome, telefone, funcao, salario, tipo);
     funcionario->Store();
 }
+
 void cadastraFornecedor()
 {
     string nome, telefone, produto_fornecido;
