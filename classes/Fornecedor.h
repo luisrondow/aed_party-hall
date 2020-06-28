@@ -30,7 +30,7 @@ int getIdFornecedor()
     }
 }
 
-Fornecedor::Fornecedor()
+Fornecedor::Fornecedor(std::string nome, std::string telefone, std::string produto_fornecido)
 {
     this->codigo = getIdFornecedor() + 1;
     this->nome = nome;
