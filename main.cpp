@@ -6,6 +6,7 @@
 #include "classes/Festa.h"
 #include "classes/Pesquisa.h"
 #include "classes/Relatorio.h"
+#include "classes/Contrato.h"
 
 using namespace std;
 
@@ -142,11 +143,20 @@ void cadastraFesta()
     cout << "O tema da festa: ";
     getline(cin, tema);
 
+    int formaPagamento;
+    cout << "Informe a forma de pagamento (numero de parcelas), exemplo: 1 (a vista), 2 (2x), etc: ";
+    cin >> formaPagamento;
+    while(formaPagamento < 1){
+        cout << "O numero informado e invalido. Digite novamente por favor... ";
+        cin >> formaPagamento;
+    }
     Festa *festa = new Festa(quantidade_convidados, data, dia_semana, horario_inicio, horario_fim, tema, codigo_cliente);
+    Contrato *contrato = new Contrato(festa->getCodigo(), festa->getValorDaFesta(), formaPagamento, 0, festa->getCodigo());
     festa->Store();
+    contrato->Store();
 }
 
-void gerarRelatorioPorNomeCliente(string aux, Relatorio *relatorio) {
+void gerarRelatorioPorNomeCliente(string aux, Relatorio *relatorio) { 
     Pesquisa *pesquisa = new Pesquisa();
     cout << "Digite o nome do cliente: ";
     getline(cin, aux);

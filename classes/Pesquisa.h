@@ -257,6 +257,8 @@ void Pesquisa::Fornecedor(std::string nome)
     }
 }
 
+
+
 bool Pesquisa::ExisteDataFesta(std::string data) {
     return false;
 }

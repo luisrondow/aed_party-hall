@@ -17,6 +17,8 @@ private:
 public:
     Festa(int quantidade_convidados, std::string data, int dia_semana, int horario_inicio, int horario_fim, std::string tema, int codigo_cliente);
     void Store();
+    int getCodigo();
+    float getValorDaFesta();
 };
 
 int getIdFesta()
@@ -33,6 +35,40 @@ int getIdFesta()
     else
     {
         return std::stoi(x);
+    }
+}
+
+int Festa::getCodigo(){
+    return this->codigo;
+}
+
+float Festa::getValorDaFesta(){
+    if(this->quantidade_convidados <= 30){
+        if(this->dia_semana > 1 && this->dia_semana < 6){
+            return 1899;
+        } else {
+            return 2099;
+        }
+    } else if(this->quantidade_convidados <= 50){
+        if(this->dia_semana > 1 && this->dia_semana < 6){
+            return 2199;
+        } else {
+            return 2299;
+        }
+    } else if(this-> quantidade_convidados <= 80){
+        if(this->dia_semana > 1 && this->dia_semana < 6){
+            return 3199;
+        } else {
+            return 3499;
+        }
+    } else if(this->quantidade_convidados <= 100){
+        if(this->dia_semana > 1 && this->dia_semana < 6){
+            return 3799;
+        } else {
+            return 3999;
+        }
+    } else {
+        return 0;
     }
 }
 
