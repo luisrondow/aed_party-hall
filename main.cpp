@@ -69,8 +69,8 @@ void cadastraFornecedor()
     cout << "O produto do fornecido: ";
     getline(cin, produto_fornecido);
 
-    Fornecedor *fornecedor = new Fornecedor(nome, telefone, produto_fornecido);
-    fornecedor->Store();
+    // Fornecedor *fornecedor = new Fornecedor(nome, telefone, produto_fornecido);
+    // fornecedor->Store();
 }
 
 void cadastraFesta()
@@ -100,12 +100,12 @@ void cadastraFesta()
 
     if (dia_semana != 7)
     {
-        cout << "O horario de inicio";
+        cout << "O horario de inicio: ";
         cin >> horario_inicio;
 
         do
         {
-            cout << "O horario que acabara (Duracao maxima = 4 horas)";
+            cout << "O horario que acabara (Duracao maxima = 4 horas): ";
             cin >> horario_fim;
         } while (horario_fim > horario_inicio + 4);
         cin.ignore(1, '\n');
@@ -145,6 +145,14 @@ void cadastraFesta()
     festa->Store();
 }
 
+void gerarRelatorioPorNomeCliente(string aux, Relatorio *relatorio) {
+    Pesquisa *pesquisa = new Pesquisa();
+    cout << "Digite o nome do cliente: ";
+    getline(cin, aux);
+    int codigoCliente = pesquisa->CodigoCliente(aux);
+    relatorio->FestaPorCliente(codigoCliente);
+}
+
 void pesquisar(int opcao)
 {
     Pesquisa *pesquisa = new Pesquisa();
@@ -178,10 +186,11 @@ void pesquisar(int opcao)
 void relatorio(int opcao)
 {
     Relatorio *relatorio = new Relatorio();
+    string aux;
     switch (opcao)
     {
     case 1:
-        cout << "Gerando relatorio de festa por cliente..." << endl;
+        gerarRelatorioPorNomeCliente(aux, relatorio);
         break;
     case 2:
         cout << "Gerando relatorio de festa por data..." << endl;
@@ -206,7 +215,7 @@ int main()
         cout << "3 - Cadastrar um Fornecedor" << endl;
         cout << "4 - Cadastrar uma Festa" << endl;
         cout << "5 - Pesquisar" << endl;
-        cout << "6 - Pesquisar" << endl;
+        cout << "6 - Relatorios" << endl;
         cout << "0 - SAIR" << endl;
         cout << "Selecione o que deseja fazer: ";
         cin >> opcao_principal;
