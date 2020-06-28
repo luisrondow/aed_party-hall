@@ -13,6 +13,7 @@ private:
     int horario_fim;
     std::string tema;
     int codigo_cliente;
+
 public:
     Festa(int quantidade_convidados, std::string data, int dia_semana, int horario_inicio, int horario_fim, std::string tema, int codigo_cliente);
     void Store();
@@ -28,11 +29,12 @@ int getIdFesta()
     if (x == "")
     {
         return 0;
-    } else {
+    }
+    else
+    {
         return std::stoi(x);
     }
 }
-
 
 Festa::Festa(int quantidade_convidados, std::string data, int dia_semana, int horario_inicio, int horario_fim, std::string tema, int codigo_cliente)
 {
@@ -57,19 +59,23 @@ void Festa::Store()
     if ((file = fopen(file_name.c_str(), "r")) == NULL)
     {
         file = fopen(file_name.c_str(), "w");
+        fclose(file);
     }
     else
     {
         file = fopen(file_name.c_str(), "a");
+        fclose(file);
     }
 
-    fileId = fopen("DAO/IdFesta.txt", "w");
+    fileId = fopen("DAO/Festa.txt", "w");
 
     if (file == NULL || fileId == NULL)
     {
         std::cout << "Problemas na CRIACAO do arquivo" << std::endl;
         return;
     }
+
+    fclose(fileId);
 
     fprintf(fileId, "%d", this->codigo);
     fprintf(file, "%d\n", this->codigo);
