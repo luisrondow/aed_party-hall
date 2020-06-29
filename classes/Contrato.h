@@ -71,7 +71,7 @@ void Contrato::Store()
     fprintf(file, "%f\n", this->valor_total);
     fprintf(file, "%f\n", this->valor_final);
     fprintf(file, "%d\n", this->forma_pagamento);
-    fprintf(file, "%d\n", this->desconto);
+    fprintf(file, "%f\n", this->desconto);
     fprintf(file, "%d\n", this->status_pagamento);
     fprintf(file, "\n");
     fclose(file);
