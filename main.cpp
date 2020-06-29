@@ -143,16 +143,19 @@ void cadastraFesta()
     cout << "O tema da festa: ";
     getline(cin, tema);
 
-    int formaPagamento;
+    int formaPagamento, codigoContrato;
     cout << "Informe a forma de pagamento (numero de parcelas), exemplo: 1 (a vista), 2 (2x), etc: ";
     cin >> formaPagamento;
+    cin.ignore(1, '\n');
     while(formaPagamento < 1){
         cout << "O numero informado e invalido. Digite novamente por favor... ";
         cin >> formaPagamento;
     }
     Festa *festa = new Festa(quantidade_convidados, data, dia_semana, horario_inicio, horario_fim, tema, codigo_cliente);
-    Contrato *contrato = new Contrato(festa->getCodigo(), festa->getValorDaFesta(), formaPagamento, 0, festa->getCodigo());
     festa->Store();
+    codigoContrato = festa->getCodigo();
+
+    Contrato *contrato = new Contrato(codigoContrato, festa->getValorDaFesta(), formaPagamento, 0, codigoContrato);
     contrato->Store();
 }
 
